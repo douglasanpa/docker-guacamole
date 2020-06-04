@@ -61,8 +61,7 @@ def WOL(mac):
 # first being #2 (assume #1 is the logged in user that created the
 # connection?).
 
-logfile =
-subprocess.Popen(['tail','-F','/var/log/catalina.out'],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+logfile = subprocess.Popen(['tail','-F','/var/log/catalina.out'],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 
 # Start reading the logile data line by line as it arrives.
 # Open the macs.list file to get machine connection numbers and associated
@@ -78,11 +77,11 @@ while True:
     line = logfile.stdout.readline()
     with open('/etc/macs.list') as inifile:
         reader = csv.DictReader(inifile)
-        if 'connected to connection' in line:
-            q1 = line.find("\"")
-            q2 = line.find("\"",q1+1)
-            q3 = line.find("\"",q2+1)
-            q4 = line.find("\"",q3+1)
+        if b'connected to connection' in line:
+            q1 = line.find(b"\"")
+            q2 = line.find(b"\"",q1+1)
+            q3 = line.find(b"\"",q2+1)
+            q4 = line.find(b"\"",q3+1)
             user = line[q1+1:q2]
             conn_num = line[q3+1:q4]
             for row in reader:

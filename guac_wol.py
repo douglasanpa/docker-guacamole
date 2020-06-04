@@ -76,7 +76,7 @@ subprocess.Popen(['tail','-F','/var/log/tomcat7/catalina.out'],stdout=subprocess
 
 while True:
     line = logfile.stdout.readline()
-    with open('macs.list') as inifile:
+    with open('/etc/macs.list') as inifile:
         reader = csv.DictReader(inifile)
         if 'connected to connection' in line:
             q1 = line.find("\"")

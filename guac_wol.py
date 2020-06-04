@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 #
 # --------------------------Readme---------------------------------------
 #
@@ -62,7 +62,7 @@ def WOL(mac):
 # connection?).
 
 logfile =
-subprocess.Popen(['tail','-F','/var/log/tomcat7/catalina.out'],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+subprocess.Popen(['tail','-F','/var/log/catalina.out'],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 
 # Start reading the logile data line by line as it arrives.
 # Open the macs.list file to get machine connection numbers and associated

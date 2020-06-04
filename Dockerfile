@@ -1,4 +1,4 @@
 FROM oznu/guacamole
 COPY guac_wol.py /usr/local/bin
 
-RUN echo ${WOL_ID// \/$eol} > /etc/macs.list
+RUN echo "/usr/local/bin/watch_macs.sh" >>

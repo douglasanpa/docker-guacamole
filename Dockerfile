@@ -7,7 +7,7 @@ RUN echo "/usr/local/bin/watch_macs.sh" >> /etc/cont-init.d/30-defaults.sh && \
     rm -rf /var/lib/apt/lists/* && \
     rm /etc/services.d/guacamole/run
 COPY run /etc/services.d/guacamole/
-RUN  chmod +x /etc/services.d/guacacamole/run
+RUN  chmod +x /etc/services.d/guacamole/run
     
 
 

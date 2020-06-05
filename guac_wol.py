@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import codecs
+from wakeonlan import send_magic_packet
 #
 # --------------------------Readme---------------------------------------
 #
@@ -87,4 +88,6 @@ while True:
             conn_num = line[q3+1:q4]
             for row in reader:
                 if(row['id']) == conn_num:
+                    print('Acordando ' + row['mac'])
                     WOL(row['mac'])
+                    send_magic_packet(row['mac'])

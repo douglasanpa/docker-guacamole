@@ -78,7 +78,7 @@ while True:
     line = str(logfile.stdout.readline())
     with open('/etc/macs.list') as inifile:
         reader = csv.DictReader(inifile)
-        if b'connected to connection' in line:
+        if 'connected to connection' in line:
             q1 = line.find("\"")
             q2 = line.find("\"",q1+1)
             q3 = line.find("\"",q2+1)

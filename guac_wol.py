@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import codecs
+import requests as req
 from wakeonlan import send_magic_packet
 #
 # --------------------------Readme---------------------------------------
@@ -89,5 +90,8 @@ while True:
             for row in reader:
                 if(row['id']) == conn_num:
                     print('Acordando ' + row['mac'])
+                    url = '$URLREQUEST' + row['mac']
+                    resp = req.get(url)
+                    print(resp.text) # Printing response
                     WOL(row['mac'])
                     send_magic_packet(row['mac'])

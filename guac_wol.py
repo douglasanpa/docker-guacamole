@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import codecs
 #
 # --------------------------Readme---------------------------------------
 #
@@ -52,7 +53,7 @@ def WOL(mac):
     data = ''.join(['FF' * 6, mac.replace(':', '') * 16])
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-    sock.sendto(data.decode("hex"), ("255.255.255.255",9))
+    sock.sendto(codecs.decode(data, 'hex'), ("255.255.255.255",9))
 
 # Open and tail Tomcat logfile. We can expect Guac connection
 # data to be logged here. This includes the Guac username that connects
@@ -74,14 +75,14 @@ logfile = subprocess.Popen(['tail','-F','/var/log/catalina.out'],stdout=subproce
 # have multiple connections....
 
 while True:
-    line = logfile.stdout.readline()
+    line = str(logfile.stdout.readline())
     with open('/etc/macs.list') as inifile:
         reader = csv.DictReader(inifile)
         if b'connected to connection' in line:
-            q1 = line.find(b"\"")
-            q2 = line.find(b"\"",q1+1)
-            q3 = line.find(b"\"",q2+1)
-            q4 = line.find(b"\"",q3+1)
+            q1 = line.find("\"")
+            q2 = line.find("\"",q1+1)
+            q3 = line.find("\"",q2+1)
+            q4 = line.find("\"",q3+1)
             user = line[q1+1:q2]
             conn_num = line[q3+1:q4]
             for row in reader:
